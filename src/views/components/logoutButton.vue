@@ -1,21 +1,19 @@
 <template>
-  <div class="">
-    <el-button type="text" @click="logout">注销</el-button>
-    <el-dialog
-      title="提示"
-      :visible.sync="logoutDialogVisible"
-      size="tiny"
-      :before-close="handleClose">
-      <span>您确定注销？</span>
-      <span slot="footer" class="dialog-footer">
+<div class="">
+  <el-button type="text" @click="logout">注销</el-button>
+  <el-dialog title="提示" :visible.sync="logoutDialogVisible" size="tiny" :before-close="handleClose">
+    <span>您确定注销？</span>
+    <span slot="footer" class="dialog-footer">
         <el-button @click="logoutDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="logoutOk">确 定</el-button>
       </span>
-    </el-dialog>
-  </div>
+  </el-dialog>
+</div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import {
+  mapState
+} from 'vuex'
 import * as types from '@/store/types'
 
 export default {
@@ -32,14 +30,21 @@ export default {
     logout: function() {
       this.logoutDialogVisible = true
     },
-    logoutOk: function(){
+    logoutOk: function() {
       this.$store.commit(types.LOGOUT)
       this.$router.push({
         path: '/login'
       })
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          done();
+        })
+        .catch(_ => {});
     }
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 </style>
