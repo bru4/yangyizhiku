@@ -4,6 +4,7 @@ import * as types from './types'
 
 Vue.use(Vuex)
 
+
 const state = {
   user: {},
   token: null,
@@ -16,7 +17,7 @@ const mutations = {
     state.token = data
   },
   [types.LOGOUT]: (state) => {
-    localStorage.remove('token')
+    localStorage.removeItem('token')
     state.token = null
   },
   [types.TITLE]: (state, data) => {
