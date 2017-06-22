@@ -25,10 +25,10 @@
       <h2 class="title">阳毅智库-登录</h2>
     </el-row>
     <el-form-item prop="name">
-      <el-input v-model="loginForm.name" auto-complete="off"></el-input>
+      <el-input v-model="loginForm.name" auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
     <el-form-item prop="pwd">
-      <el-input type="password" v-model="loginForm.pwd" auto-complete="off"></el-input>
+      <el-input type="password" v-model="loginForm.pwd" auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
     <el-form-item>
       <el-row type="flex" justify="center">
@@ -81,10 +81,16 @@ export default {
   },
   methods: {
     submitForm: function(formName) {
-      this.$store.commit(types.LOGIN, this.loginForm.name + this.loginForm.pwd)
-      let redirect = decodeURIComponent(this.$route.query.redirect || '/');
-      this.$router.push({
-        path: redirect
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$store.commit(types.LOGIN, this.loginForm.name + this.loginForm.pwd)
+          let redirect = decodeURIComponent(this.$route.query.redirect || '/');
+          this.$router.push({
+            path: redirect
+          })
+        } else {
+          console.log('未输入信息!')
+        }
       })
     },
     resetForm: function(formName) {
