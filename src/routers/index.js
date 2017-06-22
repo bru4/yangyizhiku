@@ -24,7 +24,7 @@ const routeMap = [
 
 // 页面刷新时，重新赋值token
 if (window.localStorage.getItem('token')) {
-    store.commit(types.LOGIN, window.localStorage.getItem('token'))
+  store.commit(types.LOGIN, window.localStorage.getItem('token'))
 }
 
 const router = new Router({mode: 'history', routes: routeMap})
