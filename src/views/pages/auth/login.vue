@@ -3,12 +3,13 @@
 .auth-login {
     width: 100%;
     height: 100%;
+    padding-top: 200px;
     background-color: $auth-login;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    align-items: center;
-    .form {
+/*     align-items: center;
+ */    .form {
         width: 300px;
         .title {
             color: #fff;
